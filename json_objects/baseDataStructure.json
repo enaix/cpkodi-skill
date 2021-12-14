@@ -31,5 +31,10 @@
     "movies": {
         "title": "None",
         "active": false
+    },
+    "plugin": {
+    	"name": "None",
+	"item": "None",
+	"active": "False"
     }
 }

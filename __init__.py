@@ -236,6 +236,17 @@ class CPKodiSkill(CommonPlaySkill):
             self.dLOG('Youtube Type Detected')
             request_info['youtube']['item'] = youtube_type.groupdict()['ytItem']
             request_info['youtube']['active'] = True
+        """
+        play iron man 1 from ivi plugin
+        (the|some|)(?P<title>.+)(?=\s+(from|with|using|on) (?P<plugin>.+)(?=\s+(plugin|addon)))
+        """
+        plugin_type = re.match(self.translate_regex('plugin.type'), phrase)
+        if plugin_type:
+            self.dLOG('Plugin Type Detected')
+            plugin_data = plugin_type.groupdict()
+            request_info['plugin']['item'] = plugin_data['pluginItem']
+            request_info['plugin']['name'] = plugin_data['pluginName']
+            request_info['plugin']['active'] = True
         match_album_artist_type = re.match(self.translate_regex('album.artist.type'), phrase)
         match_song_artist_type = re.match(self.translate_regex('song.artist.type'), phrase)
         album_type = re.match(self.translate_regex('album.type'), phrase)
@@ -354,6 +365,7 @@ class CPKodiSkill(CommonPlaySkill):
                                       request_info['tv']['active'] or
                                       request_info['music']['active'] or
                                       request_info['movies']['active'])
+        
         return request_info
 
     def CPS_match_query_phrase(self, phrase):
@@ -430,6 +442,13 @@ class CPKodiSkill(CommonPlaySkill):
                         results = search_youtube(request_data['youtube']['item'])
                     else:
                         self.dLOG('Warning...Youtube Plugin Not found!, while processing youtube request!')
+                if request_data['plugin']['active']:
+                    plugin_id = find_addon(self.kodi_path, request_data['plugin']['name'])
+                    if plugin_id is None:
+                        self.dLOG('Warning...Could not find \'' + request_data['plugin']['name'] + '\' while processing plugin search request!')
+                    else:
+                        results = search_addon(self.kodi_path, plugin_id, request_data['plugin']['item'])
+                        
                 if results:
                     if len(results) > 0:
                         if request_data['kodi']['active']:
