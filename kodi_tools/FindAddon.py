@@ -7,14 +7,11 @@ def find_addon(kodi_path, query):
     api_path = kodi_path + "/jsonrpc"
     json_header = {'content-type': 'application/json'} 
     method = "Addons.GetAddons"
-    addon_video = "xbmc.addon.video"
     kodi_payload = {
         "jsonrpc": "2.0",
         "method": method,
         "id": "1",
-        "params": {
-            "type": addon_video
-        }
+        "params": {}
     }
     try:
         kodi_response = requests.post(api_path, data=json.dumps(kodi_payload), headers=json_header)
