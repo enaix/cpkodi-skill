@@ -35,6 +35,6 @@
     "plugin": {
     	"name": "None",
 	"item": "None",
-	"active": "False"
+	"active": false
     }
 }
