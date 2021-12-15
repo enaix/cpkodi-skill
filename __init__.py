@@ -361,7 +361,8 @@ class CPKodiSkill(CommonPlaySkill):
             self.dLOG('Cast Type Detected')
             request_info['chromecast']['active'] = True
             request_info['chromecast']['item'] = cast_request.groupdict()['castItem']
-        request_info['activeItem'] = (request_info['youtube']['active'] or
+        request_info['activeItem'] = (request_info['plugin']['active'] or
+                                      request_info['youtube']['active'] or
                                       request_info['tv']['active'] or
                                       request_info['music']['active'] or
                                       request_info['movies']['active'])
