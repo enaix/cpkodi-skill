@@ -31,3 +31,5 @@ from .GetRequestedFavourites import get_requested_favourites
 from .PlayPVR import play_channel_number, check_channel_number, find_channel, play_channel_id
 from .ContainerChoose import get_horizontal_options, get_widelist_screen_options, info_labels, select_list_item_by_tuple
 from .Noop import noop
+from .FindAddon import find_addon
+from .SearchAddon import search_addon
