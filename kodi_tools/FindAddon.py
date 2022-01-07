@@ -15,7 +15,7 @@ def find_addon(kodi_path, query):
     }
     try:
         kodi_response = requests.post(api_path, data=json.dumps(kodi_payload), headers=json_header)
-        addons = json.loads(kodi_response)
+        addons = json.loads(kodi_response.text)
         result = addons.get('addons')
     except Exception as e:
         LOG.info(e)

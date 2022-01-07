@@ -55,6 +55,9 @@ The Kodi Skill uses conversational dialog to help you to control your KODI insta
 - [x] "play channel 2"
 - [x] "watch channel Heart TV"
   - Note that if your channel name is in a different language from your Mycroft interface, this won't work.
+## Examples -Kodi addons-
+- Tries to find the matching addon and use the `/search` API function
+- [x] "play iron man 3 from ivi addon"
 ## Examples -Miscellaneous-
 - [x] "pause kodi"
 - [x] "re-start kodi"
